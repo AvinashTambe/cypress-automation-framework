@@ -1,0 +1,24 @@
+{
+  "name": "cypress-automation-framework",
+  "version": "1.0.0",
+  "description": "## Overview   This repository contains automated test scripts for testing the Flipkart web application using Cypress. The goal is to ensure the stability and functionality of key features of the Flipkart website through end-to-end testing.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AvinashTambe/cypress-automation-framework.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AvinashTambe/cypress-automation-framework/issues"
+  },
+  "homepage": "https://github.com/AvinashTambe/cypress-automation-framework#readme",
+  "devDependencies": {
+    "cypress": "^14.2.1",
+    "cypress-xpath": "^2.0.1"
+  }
+}
