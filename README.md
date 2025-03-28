@@ -1,44 +1,79 @@
-# Cypress Automation for Flipkart Web Application
+# Cypress Automation for Flipkart Web Application  
 
-## Overview
-This repository contains automated test scripts for testing the Flipkart web application using Cypress. The goal is to ensure the stability and functionality of key features of the Flipkart website through end-to-end testing.
+## Overview  
+This repository contains automated test scripts for testing the Flipkart web application using Cypress. The goal is to ensure the stability and functionality of key features of the Flipkart website through end-to-end testing.  
 
-## Technologies Used
-- **Cypress**: JavaScript-based end-to-end testing framework
-- **Node.js**: Required to run Cypress
-- **Mocha & Chai**: For assertions and test structuring
-- **GitHub Actions** (optional): For CI/CD automation
+## Technologies Used  
+- **Cypress**: JavaScript-based end-to-end testing framework  
+- **Node.js**: Required to run Cypress  
+- **Mocha & Chai**: For assertions and test structuring  
+- **GitHub Actions** (optional): For CI/CD automation  
 
-## Prerequisites
-Ensure you have the following installed before running the tests:
-- [Node.js](https://nodejs.org/) (LTS version recommended)
-- [Git](https://git-scm.com/)
-- Cypress (Install via npm/yarn)
+## Prerequisites  
+Ensure you have the following installed before running the tests:  
+- [Node.js](https://nodejs.org/) (LTS version recommended)  
+- [Git](https://git-scm.com/)  
+- Cypress (Install via npm/yarn)  
 
-## Installation & Setup
-Clone the repository:
+## Installing Cypress  
+To install Cypress in your project, follow these steps:  
+
+1. **Ensure Node.js is installed**  
+   - Download and install [Node.js](https://nodejs.org/) (LTS version recommended).  
+   - Verify installation:  
+     ```sh
+     node -v
+     ```  
+
+2. **Navigate to your project directory**  
+   ```sh
+   cd your-repo-name
+   ```  
+
+3. **Initialize a new Node.js project (if not already done)**  
+   ```sh
+   npm init -y
+   ```  
+
+4. **Install Cypress via npm**  
+   ```sh
+   npm install cypress --save-dev
+   ```  
+
+5. **Verify installation**  
+   - Open Cypress Test Runner:  
+     ```sh
+     npx cypress open
+     ```  
+   - Run Cypress tests in headless mode:  
+     ```sh
+     npx cypress run
+     ```  
+
+## Installation & Setup  
+Clone the repository:  
 ```sh
-git clone https://github.com/your-username/your-repo-name.git](https://github.com/AvinashTambe/cypress-automation-framework.git
-cd your-repo-name
-```
+git clone https://github.com/AvinashTambe/cypress-automation-framework.git
+cd cypress-automation-framework
+```  
 
-Install dependencies:
+Install dependencies:  
 ```sh
 npm install
-```
+```  
 
-## Running Tests
-To open the Cypress Test Runner:
+## Running Tests  
+To open the Cypress Test Runner:  
 ```sh
 npx cypress open
-```
+```  
 
-To run tests in headless mode:
+To run tests in headless mode:  
 ```sh
 npx cypress run
-```
+```  
 
-## Project Structure
+## Project Structure  
 ```
 |-- cypress/
 |   |-- integration/     # Test cases
@@ -48,11 +83,11 @@ npx cypress run
 |-- cypress.json         # Cypress configuration file
 |-- package.json         # Project dependencies
 |-- README.md            # Project documentation
-```
+```  
 
-## Writing Test Cases
-Test cases are written inside `cypress/integration/`.
-Example test case:
+## Writing Test Cases  
+Test cases are written inside `cypress/integration/`.  
+Example test case:  
 ```javascript
 describe('Flipkart Search Functionality', () => {
     it('should search for a product and display results', () => {
@@ -61,10 +96,10 @@ describe('Flipkart Search Functionality', () => {
         cy.get('div._1AtVbE').should('contain', 'Laptop');
     });
 });
-```
+```  
 
-## CI/CD Integration
-To run Cypress tests in a CI/CD pipeline, add the following GitHub Actions workflow:
+## CI/CD Integration  
+To run Cypress tests in a CI/CD pipeline, add the following GitHub Actions workflow:  
 
 ```yaml
 name: Cypress Tests
@@ -79,29 +114,22 @@ jobs:
         run: npm install
       - name: Run Cypress tests
         run: npx cypress run
-```
+```  
 
-## Reporting
-Cypress provides built-in reporting, but you can integrate it with Mocha reports for detailed insights.
-To generate reports, install `mochawesome`:
+## Reporting  
+Cypress provides built-in reporting, but you can integrate it with Mocha reports for detailed insights.  
+To generate reports, install `mochawesome`:  
 ```sh
 npm install mochawesome --save-dev
-```
-Run Cypress with:
+```  
+Run Cypress with:  
 ```sh
 npx cypress run --reporter mochawesome
-```
+```  
 
-## Contributing
-1. Fork the repository.
-2. Create a feature branch (`git checkout -b feature-branch`).
-3. Commit your changes (`git commit -m 'Add new feature'`).
-4. Push to the branch (`git push origin feature-branch`).
-5. Open a Pull Request.
-
-## License
-This project is licensed under the [MIT License](LICENSE).
-
----
-Happy Testing! 🚀
-
+## Contributing  
+1. Fork the repository.  
+2. Create a feature branch (`git checkout -b feature-branch`).  
+3. Commit your changes (`git commit -m 'Add new feature'`).  
+4. Push to the branch (`git push origin feature-branch`).  
+5. Open a Pull Request.  
