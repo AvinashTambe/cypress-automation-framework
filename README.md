@@ -18,7 +18,7 @@ Ensure you have the following installed before running the tests:
 ## Installation & Setup
 Clone the repository:
 ```sh
-git clone https://github.com/your-username/your-repo-name.git
+git clone https://github.com/your-username/your-repo-name.git](https://github.com/AvinashTambe/cypress-automation-framework.git
 cd your-repo-name
 ```
 
