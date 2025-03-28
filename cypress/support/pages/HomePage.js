@@ -28,6 +28,15 @@ class HomePage {
     return cy.get("img[alt='Dropdown with more help links']"); //Get the more link element
   }
 
+  getCategoriesLink(){
+    return cy.get("._1ch8e_"); //Get the categories link element
+  }
+
+  getBanner(){
+    return cy.get("._8S67Ib"); //Get the banner element
+  }
+
+
 }
 
 export default new HomePage();
