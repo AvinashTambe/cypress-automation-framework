@@ -36,6 +36,14 @@ class HomePage {
     return cy.get("._8S67Ib"); //Get the banner element
   }
 
+  /*moveBannerNext(){
+    return cy.get("button[title=Next Slide"); //Move to the next banner element
+  }
+
+  moveBannerPrevious(){
+    return cy.get("button[title=Previous Slide"); //Move to the previous banner element
+  }*/
+
 
 }
 

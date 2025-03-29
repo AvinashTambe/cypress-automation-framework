@@ -47,4 +47,11 @@ describe('HomePage Test Suite', () => {
             .should('have.length', 5); // Check for 5 banners
     });
 
+    /*it('Verify the banner next and previous buttons', () => {
+        HomePage.moveBannerNext().should('be.visible'); // Verify the next button
+        HomePage.moveBannerNext().click(); // Click the next button
+        HomePage.moveBannerPrevious().should('be.visible'); // Verify the previous button
+        HomePage.moveBannerPrevious().click(); // Click the previous button
+    });*/
+
 });
