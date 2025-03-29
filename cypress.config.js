@@ -11,7 +11,6 @@ module.exports = defineConfig({
                         if (!config.env.EMAIL_USER || !config.env.EMAIL_PASS) {
                             return reject("Missing email credentials in cypress.env.json");
                         }
-
                         const imap = new Imap({
                             user: config.env.EMAIL_USER,
                             password: config.env.EMAIL_PASS,
@@ -21,6 +20,10 @@ module.exports = defineConfig({
                             tlsOptions: { rejectUnauthorized: false }  // Fixes self-signed certificate issue
                         });
 
+                        console.log("Starting getOTPFromEmail task...");
+                        console.log("Email user:", config.env.EMAIL_USER);
+                        console.log("IMAP host:", config.env.IMAP_HOST);
+                        
                         imap.once('ready', () => {
                             imap.openBox('INBOX', false, (err, box) => {
                                 if (err) {
@@ -48,8 +51,8 @@ module.exports = defineConfig({
                                                     return reject("Error parsing email: " + err.message);
                                                 }
 
-                                                const otpRegex = /\b\d{6}\b/;
-                                                const otpMatch = parsed.text.match(otpRegex);
+                                                const emailText = parsed.text || ""; // Ensure it's a valid string
+                                                const otpMatch = emailText.match(/\b\d{6}\b/);
                                                 const otp = otpMatch ? otpMatch[0] : null;
 
                                                 if (otp) {
@@ -74,7 +77,7 @@ module.exports = defineConfig({
                         });
 
                         imap.once('error', (err) => reject("IMAP error: " + err.message));
-                        imap.once('end', () => console.log('IMAP connection closed'));
+                        //imap.once('end', () => console.log('IMAP connection closed'));
                         imap.connect();
                     });
                 }
