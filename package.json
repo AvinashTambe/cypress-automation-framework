@@ -18,7 +18,19 @@
   },
   "homepage": "https://github.com/AvinashTambe/cypress-automation-framework#readme",
   "devDependencies": {
+    "buffer": "^6.0.3",
     "cypress": "^14.2.1",
-    "cypress-xpath": "^2.0.1"
+    "cypress-xpath": "^2.0.1",
+    "stream-browserify": "^3.0.0"
+  },
+  "dependencies": {
+    "dotenv": "^16.4.7",
+    "google-auth-library": "^9.15.1",
+    "googleapis": "^148.0.0",
+    "imap-simple": "^5.0.0",
+    "mailparser": "^3.7.2",
+    "node-imap": "^0.9.6",
+    "readline-sync": "^1.4.10",
+    "semver": "^7.7.1"
   }
 }
