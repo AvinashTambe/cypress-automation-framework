@@ -20,12 +20,26 @@ class LoginPage {
         this.getRequestOTPbutton().click(); //Click the Request OTP button
     }
 
-    getToasternotification(){
-        return cy.get(".eIDgeN"); //Get the toast notification element
+    entervalidemailnotifcation(){
+        return cy.get("span[class='llBOFA'] span"); //Get the toast notification element
     }
 
-    getOTPfields(){
-        return cy.get("input.r4vIwl.IX3CMV"); //Get the OTP input fields
+    changeemailbutton(){
+        return cy.get("span[class='llBOFA'] span']"); //Get the change email button element
+    }
+
+    otpnotreceived(){
+        return cy.get(".kZYA3m"); //Text message to display if OTP was not received
+    }
+
+    resendOTPbutton(){
+        return cy.get("rMF9Z9"); //Get the resend OTP button element
+    }
+
+    
+
+    getToasternotification(){
+        return cy.get(".eIDgeN"); //Get the toast notification element
     }
 
     clickVerifybutton(){

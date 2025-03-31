@@ -6,44 +6,118 @@ describe('LoginPage Test Suite', () => {
         cy.launchFlipkart();
     });
 
-    it('Verify the login Link and button', () => {
-        LoginPage.getLoginLink().should('be.visible'); // Verify the login link
-        LoginPage.getLoginLink().should('have.text', 'Login'); // Verify the login link text
+    it('verify login with invalid email', () => {
         LoginPage.getLoginLink().click(); // Click the login link
+        LoginPage.getEmailInputField().should('be.visible');
+        LoginPage.enterEmail(Cypress.env("INVALID_USER")); // Enter invalid email
+        LoginPage.clickRequestOTPbutton(); // Click the Request OTP button
+        cy.wait(2000); // Wait for the toast notification to appear
+        LoginPage.getToasternotification().should('be.visible'); // Check if the toast notification is visible
+        cy.get(".eIDgeN").should('contain', 'You are not registered with us. Please sign up.'); // Check if the toast notification contains the expected message
+        cy.log("✅ Invalid email test passed");
     });
 
-    it('Verify the email or phone number input field', () => {
+    it('verify login with empty email', () => {
         LoginPage.getLoginLink().click(); // Click the login link
-        LoginPage.getEmailInputField().should('be.visible'); // Verify the email or phone number input field        
+        LoginPage.getEmailInputField().should('be.visible');
+        LoginPage.enterEmail(""); // Enter empty email
+        LoginPage.clickRequestOTPbutton(); // Click the Request OTP button
+        cy.wait(2000); // Wait for the toast notification to appear
+        LoginPage.entervalidemailnotifcation()
+            .should('be.visible') // Check if the toast notification is visible
+            .and('contain', 'Please enter valid Email ID/Mobile number'); // Check if the toast notification contains the expected message
+        cy.log("✅ Empty email test passed");
     });
 
-    it('Login with email and enter OTP', function () {
-        cy.loginWithEmail(Cypress.env('EMAIL_USER'));  // ✅ Use Cypress.env()
+    it('change email for login', () => {
+        LoginPage.getLoginLink().click(); // Click the login link
+        LoginPage.getEmailInputField().should('be.visible');
+        LoginPage.enterEmail(Cypress.env("INVALID_USER")); // Enter invalid email 
+        LoginPage.clickRequestOTPbutton(); // Click the Request OTP button
+        cy.wait(2000); // Wait for the toast notification to appear
+        LoginPage.changeemailbutton()
+            .should('be.visible') // Check if the change email button is visible
+            .and('contain', 'Change'); // Check if the change email button contains the expected text
+        
+        LoginPage.changeemailbutton().click(); // Click the change email button
+        cy.wait(2000); // Wait for the email input field to appear
+        LoginPage.getEmailInputField().should('be.visible').clear(); // Check if the email input field is visible
+        LoginPage.enterEmail(Cypress.env("EMAIL_USER")); // Enter correct email
+        cy.log("✅ Change email test passed");
+    });
 
-        // Wait for OTP email and enter the OTP
-        cy.task('getOTPFromEmail').then((otp) => {  
-            cy.log('Received OTP: ' + otp);
+    it('verify resend OTP functionality', () => {
+        LoginPage.getLoginLink().click(); // Click the login link
+        LoginPage.getEmailInputField().should('be.visible');
+        LoginPage.enterEmail(Cypress.env("EMAIL_USER")); // Enter email or phone number
+        LoginPage.clickRequestOTPbutton(); // Click the Request OTP button
+
+        cy.wait(2000); // Wait for the toast notification to appear
+        LoginPage.otpnotreceived()
+            .should('be.visible') // Check if the OTP not received message is visible
+            .and('contain', 'Not received your code? '); // Check if the OTP not received message contains the expected text
         
-            LoginPage.getOTPfields().should('have.length', 6).then(($otpFields) => {
-                const otpDigits = otp.split('');
-        
-                if ($otpFields.length !== otpDigits.length) {
-                    throw new Error('Mismatch between OTP length and input fields count');
-                }
-        
-                cy.wrap($otpFields).each(($field, index) => {
-                    cy.wrap($field).clear().type(otpDigits[index], { force: true });
-                });
+        LoginPage.resendOTPbutton().should('be.visible').click(); // Click the resend OTP button
+        LoginPage.getToasternotification()
+            .should('be.visible') // Check if the toast notification is visible
+            .and('contain', 'Verification code sent to'); // Check if the toast notification contains the expected message
+        cy.log("✅ Resend OTP test passed");
+    });
+
+    it('verify incorrect OTP entered functionality', () => {
+        LoginPage.getLoginLink().click(); // Click the login link
+        LoginPage.getEmailInputField().should('be.visible');
+        LoginPage.enterEmail(Cypress.env("EMAIL_USER")); // Enter email or phone number
+        LoginPage.clickRequestOTPbutton(); // Click the Request OTP button
+        cy.wait(2000); // Wait for the toast notification to appear
+        LoginPage.getToasternotification()
+            .should('be.visible') // Check if the toast notification is visible
+            .and('contain', 'Verification code sent to'); // Check if the toast notification contains the expected message
+        cy.log("✅ OTP sent successfully");
+        cy.wait(3000); // Ensure enough delay for OTP to be processed
+        // Enter incorrect OTP
+        // Retrieve OTP from alias and enter it into fields
+        const otp = "123456"; // Example incorrect OTP
+        cy.get("@otpValue").then((otp) => {
+            cy.getOTPfields().each((input, index) => {
+                cy.wrap(input).clear().type(otp[index]); // Enter each digit separately
             });
-        
-            LoginPage.clickVerifybutton().should('be.visible').click();
         });
-        
-                
+        cy.log("✅ Incorrect OTP Entered");
+        LoginPage.clickVerifybutton().should("be.visible").click(); // Click the Verify button
+
+        cy.wait(2000); // Wait for the error message to appear
+        LoginPage.getToasternotification()
+            .should('be.visible') // Check if the toast notification is visible
+            .and('contain', 'Incorrect OTP'); // Check if the toast notification contains the expected message
+        cy.log("✅ Incorrect OTP test passed");
+    });
+
+    it("extract OTP and enter correct OTP", () => {
+        LoginPage.getLoginLink().click(); // Click the login link
+        LoginPage.getEmailInputField().should('be.visible');
+        LoginPage.enterEmail(Cypress.env("EMAIL_USER")); // Enter email or phone number
+        LoginPage.clickRequestOTPbutton(); // Click the Request OTP button
+
+        // Retry fetching OTP every 5 seconds, up to 3 times
+        cy.wait(5000); // Initial wait for OTP email to arrive
+        cy.getOTP().then((otp) => {
+            cy.log("✅ Latest OTP Retrieved: " + otp);
+            expect(otp).to.match(/^\d{6}$/); // Validate OTP format
+            cy.wrap(otp).as("otpValue"); // Store OTP using Cypress alias
+        });
+
+        cy.wait(3000); // Ensure enough delay for OTP to be processed
+
+        // Retrieve OTP from alias and enter it into fields
+        cy.get("@otpValue").then((otp) => {
+            cy.getOTPfields().each((input, index) => {
+                cy.wrap(input).clear().type(otp[index]); // Enter each digit separately
+            });
+        });
+
+        cy.log("✅ OTP Entered Successfully");
+        LoginPage.clickVerifybutton().should("be.visible").click(); // Click the Verify button
     });
 
 });
-
-
-
-    

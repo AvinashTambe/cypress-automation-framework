@@ -1,89 +1,45 @@
-const Imap = require('imap');
+const imaps = require('imap-simple');
 const { simpleParser } = require('mailparser');
-const { defineConfig } = require("cypress");
 
-module.exports = defineConfig({
-    e2e: {
-        setupNodeEvents(on, config) {
-            on('task', {
-                getOTPFromEmail() {
-                    return new Promise((resolve, reject) => {
-                        if (!config.env.EMAIL_USER || !config.env.EMAIL_PASS) {
-                            return reject("Missing email credentials in cypress.env.json");
-                        }
-                        const imap = new Imap({
-                            user: config.env.EMAIL_USER,
-                            password: config.env.EMAIL_PASS,
-                            host: config.env.IMAP_HOST || 'imap.gmail.com',
-                            port: config.env.IMAP_PORT || 993,
-                            tls: true,
-                            tlsOptions: { rejectUnauthorized: false }  // Fixes self-signed certificate issue
-                        });
+module.exports = {
+  e2e: {
+    setupNodeEvents(on, config) {
+      on('task', {
+        fetchOTP({ emailUser, emailPass, imapHost }) {
+          const imapConfig = {
+            imap: {
+              user: emailUser,
+              password: emailPass,
+              host: imapHost,
+              port: 993,
+              tls: true,
+              authTimeout: 30000
+            }
+          };
 
-                        console.log("Starting getOTPFromEmail task...");
-                        console.log("Email user:", config.env.EMAIL_USER);
-                        console.log("IMAP host:", config.env.IMAP_HOST);
-                        
-                        imap.once('ready', () => {
-                            imap.openBox('INBOX', false, (err, box) => {
-                                if (err) {
-                                    imap.end();
-                                    return reject("Error opening inbox: " + err.message);
-                                }
+          return imaps.connect(imapConfig).then((connection) => {
+            return connection.openBox('INBOX').then(() => {
+              const searchCriteria = ['UNSEEN']; // Only fetch unread emails
+              const fetchOptions = { bodies: ['TEXT'], markSeen: true };
 
-                                imap.search(['UNSEEN', ['SINCE', new Date()]], (err, results) => {
-                                    if (err) {
-                                        imap.end();
-                                        return reject("Search error: " + err.message);
-                                    }
-
-                                    if (results.length === 0) {
-                                        imap.end();
-                                        return reject("No new emails found.");
-                                    }
-
-                                    const f = imap.fetch(results, { bodies: '' });
-                                    f.on('message', (msg) => {
-                                        msg.on('body', (stream) => {
-                                            simpleParser(stream, (err, parsed) => {
-                                                if (err) {
-                                                    imap.end();
-                                                    return reject("Error parsing email: " + err.message);
-                                                }
-
-                                                const emailText = parsed.text || ""; // Ensure it's a valid string
-                                                const otpMatch = emailText.match(/\b\d{6}\b/);
-                                                const otp = otpMatch ? otpMatch[0] : null;
-
-                                                if (otp) {
-                                                    imap.end();
-                                                    return resolve(otp);
-                                                } else {
-                                                    imap.end();
-                                                    return reject("OTP not found in email.");
-                                                }
-                                            });
-                                        });
-                                    });
-
-                                    f.once('error', (err) => {
-                                        imap.end();
-                                        return reject("Fetch error: " + err.message);
-                                    });
-
-                                    f.once('end', () => imap.end());
-                                });
-                            });
-                        });
-
-                        imap.once('error', (err) => reject("IMAP error: " + err.message));
-                        //imap.once('end', () => console.log('IMAP connection closed'));
-                        imap.connect();
-                    });
+              return connection.search(searchCriteria, fetchOptions).then((messages) => {
+                if (messages.length === 0) {
+                  throw new Error("❌ No new OTP email found!");
                 }
-            });
 
-            return config;
+                const latestEmail = messages[messages.length - 1]; // Get the latest email
+                return simpleParser(latestEmail.parts[0].body).then((mail) => {
+                  const otpMatch = mail.text.match(/\b\d{6}\b/); // Extract 6-digit OTP
+                  if (!otpMatch) {
+                    throw new Error("❌ OTP not found in email!");
+                  }
+                  return otpMatch[0]; // Return OTP
+                });
+              });
+            });
+          });
         }
-    }
-});
+      });
+    },
+  },
+};
