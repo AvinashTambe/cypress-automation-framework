@@ -6,7 +6,7 @@ describe('LoginPage Test Suite', () => {
         cy.launchFlipkart();
     });
 
-    it('verify login with invalid email', () => {
+    it('verify login with unregistered email', () => {
         LoginPage.getLoginLink().click(); // Click the login link
         LoginPage.getEmailInputField().should('be.visible');
         LoginPage.enterEmail(Cypress.env("INVALID_USER")); // Enter invalid email
@@ -17,7 +17,7 @@ describe('LoginPage Test Suite', () => {
         cy.log("✅ Invalid email test passed");
     });
 
-    it('verify login with empty email', () => {
+    it('verify login with invalid or empty email', () => {
         LoginPage.getLoginLink().click(); // Click the login link
         LoginPage.getEmailInputField().should('be.visible');
         LoginPage.enterEmail(""); // Enter empty email

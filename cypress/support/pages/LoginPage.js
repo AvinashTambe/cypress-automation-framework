@@ -25,7 +25,7 @@ class LoginPage {
     }
 
     changeemailbutton(){
-        return cy.get("span[class='llBOFA'] span']"); //Get the change email button element
+        return cy.get(".azBkHf"); //Get the change email button element
     }
 
     otpnotreceived(){
