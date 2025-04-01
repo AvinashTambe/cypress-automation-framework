@@ -45,6 +45,10 @@ class LoginPage {
     clickVerifybutton(){
         return cy.get("button[class='QqFHMw llMuju M5XAsp']"); //Get the verify button element
     }
+
+    verificationunsuccessful(){
+        return cy.get("._2LM-Uv'"); //Get the verification successful toast notification element
+    }
 }
 
 export default new LoginPage();

@@ -23,3 +23,18 @@ Cypress.Commands.add("getOTPfields", () => {
     return cy.get(".XDRRi5 input"); // Ensure correct selector
 });
   
+Cypress.Commands.add("verificationUnsuccessfulState", () => {
+  return cy.get("._2LM-Uv", { timeout: 2000 }) // Replace with actual error toast locator
+      .should('be.visible')
+      .and('contain', 'Verification unsuccessful') // Check for the expected text
+      .then(() => {
+          cy.log('❌ Verification failed.');
+          return true; // ✅ Return `true` if verification failed
+      }, (error) => {
+          // If the element is not found or any other error occurs, handle it here
+          cy.log('✅ Verification was successful. Proceeding...');
+          return false; // ✅ Return `false` if verification passed
+      });
+});
+
+
