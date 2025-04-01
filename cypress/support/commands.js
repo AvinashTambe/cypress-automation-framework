@@ -24,17 +24,24 @@ Cypress.Commands.add("getOTPfields", () => {
 });
   
 Cypress.Commands.add("verificationUnsuccessfulState", () => {
-  return cy.get("._2LM-Uv", { timeout: 2000 }) // Replace with actual error toast locator
-      .should('be.visible')
-      .and('contain', 'Verification unsuccessful') // Check for the expected text
-      .then(() => {
-          cy.log('❌ Verification failed.');
-          return true; // ✅ Return `true` if verification failed
-      }, (error) => {
-          // If the element is not found or any other error occurs, handle it here
+  return cy.get('body').then(($body) => {
+      if ($body.find('._2LM-Uv').length > 0) {
+          // ✅ If error toast is found, verify the message
+          return cy.get('._2LM-Uv')
+              .should('be.visible')
+              .and('contain', 'Verification unsuccessful')
+              .then(() => {
+                  cy.log('❌ Verification failed.');
+                  return cy.wrap(true); // Verification failed
+              });
+      } else {
+          // ✅ No error message found, verification was successful
           cy.log('✅ Verification was successful. Proceeding...');
-          return false; // ✅ Return `false` if verification passed
-      });
+          return cy.wrap(false); // Verification successful
+      }
+  });
 });
+
+
 
 
