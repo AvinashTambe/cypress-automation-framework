@@ -42,6 +42,48 @@ Cypress.Commands.add("verificationUnsuccessfulState", () => {
   });
 });
 
+Cypress.Commands.add('validateSearch', (expectedSearchKey) => {
+  cy.log(`🔍 Validating Search for: ${expectedSearchKey}`);
+
+  cy.get('body').then(($body) => {
+    if ($body.find('.BHPsUQ').length > 0) {
+      // "No results found" case
+      cy.get('.BHPsUQ').should('be.visible').and('contain.text', 'Sorry, no results found!');
+      cy.log(`❌ No results found for: ${expectedSearchKey}`);
+    } else {
+      // Extract search results message
+      cy.xpath("//span[@class='BUOuZu']")
+        .should('exist')
+        .should('be.visible')
+        .invoke('text')
+        .then((searchResultText) => {
+          cy.log(`🔍 Extracted search results message: ${searchResultText}`);
+
+          // Extract keywords from search input (excluding short words)
+          let expectedKeywords = expectedSearchKey.split(/\s+/).filter(word => word.length > 2);
+
+          if (expectedKeywords.length === 0) {
+            cy.log(`⚠️ No significant keywords found in search query.`);
+            return;
+          }
+
+          // Count matches between expected keywords and search results
+          const matchCount = expectedKeywords.filter(keyword => 
+            searchResultText.toLowerCase().includes(keyword.toLowerCase())
+          ).length;
+
+          const matchPercentage = (matchCount / expectedKeywords.length) * 100;
+
+          cy.log(`🔍 Match Percentage: ${matchPercentage}%`);
+
+          // Assert if match percentage meets the threshold
+          expect(matchPercentage, `Expected at least 70% match but got ${matchPercentage}%`)
+            .to.be.greaterThan(70);
+        });
+    }
+  });
+});
+
 
 
 
