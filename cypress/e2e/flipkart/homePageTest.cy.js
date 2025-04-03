@@ -7,18 +7,17 @@ describe('HomePage Test Suite', () => {
     });
 
     it('Verify all the elements on the home page', () => {
-        HomePage.getLogo().should('be.visible'); // Verify the flipkart logo
-        HomePage.getSearchBox().should('be.visible'); // Verify the search box
-        HomePage.getSearchButton().should('be.visible'); // Verify the search button
-        HomePage.getLoginLink().should('be.visible'); // Verify the login link
-        HomePage.getCartLink().should('be.visible'); // Verify the cart link
-        HomePage.getResellerLink().should('be.visible'); // Verify the reseller link
-        HomePage.getMoreLink().should('be.visible'); // Verify the more link
+        HomePage.getLogo()// Verify the flipkart logo
+        HomePage.getSearchBox() // Verify the search box
+        HomePage.getSearchButton() // Verify the search button
+        HomePage.getLoginLink() // Verify the login link
+        HomePage.getCartLink() // Verify the cart link
+        HomePage.getResellerLink() // Verify the reseller link
+        HomePage.getMoreLink() // Verify the more link
     });
 
     it('Verify the categories count', () => {
-        HomePage.getCategoriesLink().should('be.visible') // Verify the categories link are visible
-            .should('have.length', 9); // Check for 9 categories
+        HomePage.getCategoriesLink().should('have.length', 9); // Check for 9 categories
     });
 
     it('Verify category names', () => {

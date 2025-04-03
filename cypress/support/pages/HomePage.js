@@ -2,39 +2,39 @@ import { HomePageLocators } from "@support/locators";
 
 class HomePage {
     
-   getLogo = function () {
-        return cy.xpath(HomePageLocators.Logo); //Get the logo element
+   getLogo () {
+        return cy.xpath(HomePageLocators.Logo).should('be.visible'); //Get the logo element
     };
     
-    getSearchBox = function () {
-        return cy.get(HomePageLocators.SearchBox); //Get the search box element
+    getSearchBox () {
+        return cy.get(HomePageLocators.SearchBox).should('be.visible'); //Get the search box element
     };
     
-    getSearchButton = function () {
-        return cy.get(HomePageLocators.SearchButton); //Get the search button element
+    getSearchButton () {
+        return cy.get(HomePageLocators.SearchButton).should('be.visible'); //Get the search button element
     };
     
-    getLoginLink = function () {
-        return cy.get(HomePageLocators.LoginLink); //Get the login link element
+    getLoginLink () {
+        return cy.get(HomePageLocators.LoginLink).should('be.visible'); //Get the login link element
     };
     
-    getCartLink = function () {
-        return cy.get(HomePageLocators.CartLink); //Get the cart link element
+    getCartLink () {
+        return cy.get(HomePageLocators.CartLink).should('be.visible'); //Get the cart link element
     };
     
-    getResellerLink = function () {
-        return cy.xpath(HomePageLocators.ResellerLink); //Get the reseller link element
+    getResellerLink () {
+        return cy.xpath(HomePageLocators.ResellerLink).should('be.visible'); //Get the reseller link element
     };
-    getMoreLink = function () {
-        return cy.get(HomePageLocators.MoreLink); //Get the more link element
+    getMoreLink () {
+        return cy.get(HomePageLocators.MoreLink).should('be.visible'); //Get the more link element
     };
     
-    getCategoriesLink = function () {
-        return cy.get(HomePageLocators.CategoriesLink); //Get the categories link element
+    getCategoriesLink (){
+        return cy.get(HomePageLocators.CategoriesLink).should('be.visible'); //Get the categories link element
     };
    
     getBanner = function () {
-        return cy.get(HomePageLocators.Banner); //Get the banner element
+        return cy.get(HomePageLocators.Banner).should('be.visible'); //Get the banner element
     };
 };
 
