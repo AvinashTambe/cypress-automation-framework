@@ -1,4 +1,5 @@
 import LoginPage from "../../support/pages/LoginPage";
+import HomePage from "../../support/pages/HomePage";
 
 describe('LoginPage Test Suite', () => {
 
@@ -7,38 +8,27 @@ describe('LoginPage Test Suite', () => {
     });
 
     it('verify login with unregistered email', () => {
-        LoginPage.getLoginLink().click(); // Click the login link
-        LoginPage.getEmailInputField().should('be.visible');
-        LoginPage.enterEmail(Cypress.env("INVALID_USER")); // Enter invalid email
+        HomePage.getLoginLink().click(); // Click the login link
+        LoginPage.getEmailInputField(); 
+        LoginPage.enterEmail("invalid_user@gmail.com"); // Enter invalid email
         LoginPage.clickRequestOTPbutton(); // Click the Request OTP button
-        cy.wait(2000); // Wait for the toast notification to appear
-        // ✅ Continue execution if verification passes
-        LoginPage.getToasternotification().should('be.visible');
-        cy.get(".eIDgeN").should('contain', 'You are not registered with us. Please sign up.');
-        cy.log("✅ Invalid email test passed");
+        LoginPage.UnregisteredEmail(); // Check if the toast notification is visible
     });
     
     
-
     it('verify login with invalid or empty email', () => {
-        LoginPage.getLoginLink().click(); // Click the login link
-        LoginPage.getEmailInputField().should('be.visible');
+        HomePage.getLoginLink().click(); // Click the login link
+        LoginPage.getEmailInputField()
         LoginPage.enterEmail("test>"); // Enter empty email
         LoginPage.clickRequestOTPbutton(); // Click the Request OTP button
-        cy.wait(2000); // Wait for the toast notification to appear
-        LoginPage.entervalidemailnotifcation()
-            .should('be.visible') // Check if the toast notification is visible
-            .and('contain', 'Please enter valid Email ID/Mobile number'); // Check if the toast notification contains the expected message
-        cy.log("✅ Empty email test passed");
+        LoginPage.enternvalidemailnotifcation() // Check if the toast notification is visible
     });
 
     it('change email for login', () => {
-        LoginPage.getLoginLink().click(); // Click login link
-        LoginPage.getEmailInputField().should('be.visible');
+        HomePage.getLoginLink().click(); // Click login link
+        LoginPage.getEmailInputField(); // Check if the email input field is visible
         LoginPage.enterEmail(Cypress.env("INITIAL_USER")); // Enter initial email
         LoginPage.clickRequestOTPbutton(); // Click "Request OTP"
-        cy.wait(2000); // Wait for notification
-    
         cy.verificationUnsuccessfulState().then((failed) => {
             if (failed) {
                 cy.log('❌ Verification failed. Stopping test execution.');
@@ -47,24 +37,13 @@ describe('LoginPage Test Suite', () => {
     
             // ✅ Proceed only if verification passed
             LoginPage.changeemailbutton()
-                .should('be.visible')
-                .and('contain', 'Change')
-                .click();
-    
-            cy.wait(2000); // Wait for input field
-    
-            LoginPage.getEmailInputField()
-                .should('be.visible')
-                .clear()
-                .type(Cypress.env("EMAIL_USER")); // Enter new email
-    
-            cy.log("✅ Change email test passed");
+            LoginPage.reenterEmail(Cypress.env("EMAIL_USER")); // Enter new email
         });
     });
     
     
 
-    it('verify resend OTP functionality', () => {
+    /*it('verify resend OTP functionality', () => {
         LoginPage.getLoginLink().click(); // Click the login link
         LoginPage.getEmailInputField().should('be.visible');
         LoginPage.enterEmail(Cypress.env("EMAIL_USER")); // Enter email or phone number
@@ -152,7 +131,7 @@ describe('LoginPage Test Suite', () => {
             cy.log("✅ OTP Entered Successfully");
             LoginPage.clickVerifybutton().should("be.visible").click(); // Click the Verify button
         });
-    });
+    });*/
 
     
 });

@@ -1,49 +1,65 @@
+import { LoginPageLocators } from "@support/locators";
+import { ToasterMessages } from "@support/ToasterMessages";
+
 class LoginPage {
 
-    getLoginLink(){
-        return cy.get("a[title='Login'] span"); //Get the login link element
+    getEmailInputField(){
+        return cy.get(LoginPageLocators.EmailId).should('be.visible'); //Get the email input field element
     }
 
-    getEmailInputField(){
-        return cy.get("input[class='r4vIwl BV+Dqf']");
+    getRequestOTPbutton(){
+        return cy.get(LoginPageLocators.OTPbutton).should('be.visible'); //Get the submit button element
+    }
+
+    changeemailbutton(){
+        return cy.get(LoginPageLocators.ChangeEmailbutton)
+            .should('be.visible') //Get the change email button element
+            .should('contain', 'Change') //Check if the button contains the text 'Change'
+            .click(); //Click the change email button
+    }
+
+    resendOTPbutton(){
+        return cy.get(LoginPageLocatorsResendOTPbutton).should('be.visible'); //Get the resend OTP button element
+    }
+
+    clickVerifybutton(){
+        return cy.get(LoginPageLocators.Verifybutton).should('be.visible'); //Get the verify button element
     }
 
     enterEmail(email){
         this.getEmailInputField().type(email); //Enter email or phone number
     }
 
-    getRequestOTPbutton(){
-        return cy.get(".QqFHMw.twnTnD._7Pd1Fp"); //Get the submit button element
+    reenterEmail(email){
+        this.getEmailInputField()
+            .should('be.visible') //Check if the email input field is visible    
+            .clear()
+            .type(email); //Re-enter email or phone number
     }
 
     clickRequestOTPbutton(){
         this.getRequestOTPbutton().click(); //Click the Request OTP button
     }
 
-    entervalidemailnotifcation(){
-        return cy.get("span[class='llBOFA'] span"); //Get the toast notification element
+    enternvalidemailnotifcation(){
+        return cy.get(LoginPageLocators.InvalidEmailmessage)
+            .should('be.visible') //Check if the notification is visible
+            .and('contain', ToasterMessages.InvalidEmail) //Get the toast notification element
     }
 
-    changeemailbutton(){
-        return cy.get(".azBkHf"); //Get the change email button element
+    UnregisteredEmail(){
+        return cy.get(LoginPageLocators.Emailmessages)
+            .should('be.visible') //Check if the notification is visible
+            .and('contain', ToasterMessages.UnregisteredEmail) //Get the toast notification element
     }
+
 
     otpnotreceived(){
         return cy.get(".kZYA3m"); //Text message to display if OTP was not received
     }
 
-    resendOTPbutton(){
-        return cy.get("rMF9Z9"); //Get the resend OTP button element
-    }
-
-    
-
     getToasternotification(){
-        return cy.get(".eIDgeN"); //Get the toast notification element
-    }
-
-    clickVerifybutton(){
-        return cy.get("button[class='QqFHMw llMuju M5XAsp']"); //Get the verify button element
+        return cy.get(".eIDgeN").should('be.visible'); //Get the toast notification element
     }
 
     verificationunsuccessful(){

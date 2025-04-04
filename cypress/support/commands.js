@@ -1,4 +1,7 @@
 import 'cypress-xpath';
+//import HomePage from '@support/pages/HomePage';
+import HomePage from './pages/HomePage';
+
 
 // ✅ Launch Flipkart
 Cypress.Commands.add('launchFlipkart', () => {
@@ -81,6 +84,17 @@ Cypress.Commands.add('validateSearch', (expectedSearchKey) => {
             .to.be.greaterThan(70);
         });
     }
+  });
+});
+
+
+Cypress.Commands.add('verifyCategories', (categories) => {
+  HomePage.getCategoriesLink().then(($elements) => {
+      const actualCategories = [...$elements].map(el => el.textContent.trim());
+
+      categories.forEach(category => {
+          expect(actualCategories).to.include(category); // Check if each category is present
+      });
   });
 });
 

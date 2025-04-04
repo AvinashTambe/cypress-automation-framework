@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.HomePageLocators = void 0;
+exports.LoginPageLocators = exports.HomePageLocators = void 0;
 var HomePageLocators;
 (function (HomePageLocators) {
     HomePageLocators["Logo"] = "//img[@title='Flipkart']";
@@ -13,3 +13,13 @@ var HomePageLocators;
     HomePageLocators["CategoriesLink"] = "._1ch8e_";
     HomePageLocators["Banner"] = "._8S67Ib"; // Banner element
 })(HomePageLocators || (exports.HomePageLocators = HomePageLocators = {}));
+var LoginPageLocators;
+(function (LoginPageLocators) {
+    LoginPageLocators["EmailId"] = "input[class='r4vIwl BV+Dqf']";
+    LoginPageLocators["OTPbutton"] = ".QqFHMw.twnTnD._7Pd1Fp";
+    LoginPageLocators["ChangeEmailbutton"] = ".azBkHf";
+    LoginPageLocators["ResendOTPbutton"] = "rMF9Z9";
+    LoginPageLocators["Verifybutton"] = "button[class='QqFHMw llMuju M5XAsp\u2019]";
+    LoginPageLocators["Emailmessages"] = ".eIDgeN";
+    LoginPageLocators["InvalidEmailmessage"] = "span[class='llBOFA'] span"; // InValid Email notification
+})(LoginPageLocators || (exports.LoginPageLocators = LoginPageLocators = {}));

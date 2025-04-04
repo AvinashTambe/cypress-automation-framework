@@ -1,4 +1,4 @@
-import { HomePageLocators } from "@support/locators";
+import { HomePageLocators } from "@support/locators";// Importing the locators for the home page
 
 class HomePage {
     
@@ -30,11 +30,16 @@ class HomePage {
     };
     
     getCategoriesLink (){
-        return cy.get(HomePageLocators.CategoriesLink).should('be.visible'); //Get the categories link element
+        return cy.get(HomePageLocators.CategoriesLink)
+            .should('be.visible')
+            .and('have.length', 9); //Get the categories link element
     };
    
     getBanner = function () {
-        return cy.get(HomePageLocators.Banner).should('be.visible'); //Get the banner element
+        return cy.get(HomePageLocators.Banner)
+            .should('be.visible') //Get the banner element
+            .not('[data-clone="true"]')  // Exclude cloned ones
+            .should('have.length', 5); // Check for 5 banners
     };
 };
 

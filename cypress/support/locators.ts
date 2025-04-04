@@ -10,3 +10,12 @@ export enum HomePageLocators {
     Banner = "._8S67Ib"  // Banner element
   }
   
+  export enum LoginPageLocators { 
+    EmailId = "input[class='r4vIwl BV+Dqf']", // Email ID input field
+    OTPbutton = ".QqFHMw.twnTnD._7Pd1Fp", // OTP button
+    ChangeEmailbutton = ".azBkHf", // Change Email button
+    ResendOTPbutton = "rMF9Z9", // Resend OTP button
+    Verifybutton = "button[class='QqFHMw llMuju M5XAsp’]", // Verify button
+    Emailmessages = ".eIDgeN", // Email related notification
+    InvalidEmailmessage = "span[class='llBOFA'] span" // InValid Email notification
+    }

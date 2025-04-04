@@ -4,6 +4,10 @@ describe('HomePage Test Suite', () => {
 
     beforeEach(() => {
         cy.launchFlipkart();
+        // Load fixture data and store it in 'this'
+        cy.fixture('testData/categories').then((data) => {
+            cy.wrap(data.expectedCategories).as('categories'); 
+        });
     });
 
     it('Verify all the elements on the home page', () => {
@@ -17,33 +21,17 @@ describe('HomePage Test Suite', () => {
     });
 
     it('Verify the categories count', () => {
-        HomePage.getCategoriesLink().should('have.length', 9); // Check for 9 categories
+        HomePage.getCategoriesLink() // Check for 9 categories
     });
 
     it('Verify category names', () => {
-        const expectedCategories = [
-          'Kilos', 
-          'Mobiles', 
-          'Fashion', 
-          'Electronics', 
-          'Home & Furniture', 
-          'Appliances', 
-          'Flight Bookings', 
-          'Beauty, Toys & More', 
-          'Two Wheelers'
-            ]; // Expected category names
-        HomePage.getCategoriesLink().then(($elements) => { // Get all category elements
-            const actualCategories = [...$elements].map(el => el.textContent.trim()); // Extract text content
-            expectedCategories.forEach(category => { // Verify each category
-                expect(actualCategories).to.include(category); // Check if the category is present
-            });
+        cy.get('@categories').then((expectedCategories) => {
+            cy.verifyCategories(expectedCategories);// Verify the category names
         });
     });
 
     it('Verify the banner', () => {
-        HomePage.getBanner().should('be.visible')
-            .not('[data-clone="true"]')  // Exclude cloned ones
-            .should('have.length', 5); // Check for 5 banners
+        HomePage.getBanner() // Verify the banner
     });
 
     /*it('Verify the banner next and previous buttons', () => {
