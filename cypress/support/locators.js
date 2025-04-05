@@ -18,8 +18,8 @@ var LoginPageLocators;
     LoginPageLocators["EmailId"] = "input[class='r4vIwl BV+Dqf']";
     LoginPageLocators["OTPbutton"] = ".QqFHMw.twnTnD._7Pd1Fp";
     LoginPageLocators["ChangeEmailbutton"] = ".azBkHf";
-    LoginPageLocators["ResendOTPbutton"] = "rMF9Z9";
-    LoginPageLocators["Verifybutton"] = "button[class='QqFHMw llMuju M5XAsp\u2019]";
+    LoginPageLocators["ResendOTPbutton"] = ".rMF9Z9";
+    LoginPageLocators["Verifybutton"] = "button[class='QqFHMw llMuju M5XAsp']";
     LoginPageLocators["Emailmessages"] = ".eIDgeN";
     LoginPageLocators["InvalidEmailmessage"] = "span[class='llBOFA'] span"; // InValid Email notification
 })(LoginPageLocators || (exports.LoginPageLocators = LoginPageLocators = {}));
