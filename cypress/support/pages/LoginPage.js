@@ -4,11 +4,13 @@ import { ToasterMessages } from "@support/ToasterMessages";
 class LoginPage {
 
     getEmailInputField(){
-        return cy.get(LoginPageLocators.EmailId).should('be.visible'); //Get the email input field element
+        return cy.get(LoginPageLocators.EmailId)
+            .should('be.visible'); //Get the email input field element
     }
 
     getRequestOTPbutton(){
-        return cy.get(LoginPageLocators.OTPbutton).should('be.visible'); //Get the submit button element
+        return cy.get(LoginPageLocators.OTPbutton)
+            .should('be.visible'); //Get the submit button element
     }
 
     changeemailbutton(){
@@ -19,11 +21,15 @@ class LoginPage {
     }
 
     resendOTPbutton(){
-        return cy.get(LoginPageLocatorsResendOTPbutton).should('be.visible'); //Get the resend OTP button element
+        return cy.get(LoginPageLocators.ResendOTPbutton, { timeout: 20000 })
+            .should('be.visible')
+            .click(); //Get the resend OTP button element
     }
 
     clickVerifybutton(){
-        return cy.get(LoginPageLocators.Verifybutton).should('be.visible'); //Get the verify button element
+        return cy.get(LoginPageLocators.Verifybutton)
+            .should('be.visible')
+            .click(); //Get the verify button element
     }
 
     enterEmail(email){
@@ -34,37 +40,55 @@ class LoginPage {
         this.getEmailInputField()
             .should('be.visible') //Check if the email input field is visible    
             .clear()
-            .type(email); //Re-enter email or phone number
+            .type(email) //Re-enter email or phone number
+            .should('contain.value', email); //Check if the email input field contains the entered email
     }
 
     clickRequestOTPbutton(){
         this.getRequestOTPbutton().click(); //Click the Request OTP button
     }
 
-    enternvalidemailnotifcation(){
+    enterOTP(otp) {
+        return cy.get(LoginPageLocators.OTPfield)
+            .should('be.visible')
+            .should('have.length', otp.length)
+            .each((input, index) => {
+                cy.wrap(input).clear().type(otp[index]);
+            });
+    }
+
+    InvalidEmailToaster(){
         return cy.get(LoginPageLocators.InvalidEmailmessage)
             .should('be.visible') //Check if the notification is visible
             .and('contain', ToasterMessages.InvalidEmail) //Get the toast notification element
     }
 
-    UnregisteredEmail(){
+    UnregisteredEmailToaster(){
         return cy.get(LoginPageLocators.Emailmessages)
             .should('be.visible') //Check if the notification is visible
             .and('contain', ToasterMessages.UnregisteredEmail) //Get the toast notification element
     }
 
-
-    otpnotreceived(){
-        return cy.get(".kZYA3m"); //Text message to display if OTP was not received
+    OTPsentToaster(expectedEmail){
+        const fullMessage = `${ToasterMessages.OTPsent} ${expectedEmail}`;//Construct the full message
+        return cy.get(LoginPageLocators.Emailmessages)
+            .should('be.visible') //Check if the notification is visible
+            .and('have.text', fullMessage) //Get the toast notification element
     }
 
-    getToasternotification(){
-        return cy.get(".eIDgeN").should('be.visible'); //Get the toast notification element
+    OTPnotreceivedToaster(){
+        return cy.get(LoginPageLocators.OTPnotReceived)
+        .should('be.visible') // Check if the OTP not received message is visible
+        .and('contain', 'Not received your code? '); // Check if the OTP not received message contains the expected text //Text message to display if OTP was not received
     }
 
-    verificationunsuccessful(){
-        return cy.get("._2LM-Uv'"); //Get the verification successful toast notification element
+    IncorrectOTPToaster(){
+        return cy.get(LoginPageLocators.Emailmessages)
+            .should('be.visible') //Check if the notification is visible
+            .and('contain', ToasterMessages.IncorrectOTP) //Get the toast notification element
     }
+
+    
 }
 
 export default new LoginPage();

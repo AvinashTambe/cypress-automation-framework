@@ -11,11 +11,14 @@ export enum HomePageLocators {
   }
   
   export enum LoginPageLocators { 
-    EmailId = "input[class='r4vIwl BV+Dqf']", // Email ID input field
+    //EmailId = "input[class='r4vIwl BV+Dqf']", // Email ID input field
+    EmailId = ".r4vIwl", // Email ID input field
     OTPbutton = ".QqFHMw.twnTnD._7Pd1Fp", // OTP button
     ChangeEmailbutton = ".azBkHf", // Change Email button
     ResendOTPbutton = ".rMF9Z9", // Resend OTP button
     Verifybutton = "button[class='QqFHMw llMuju M5XAsp']", // Verify button
     Emailmessages = ".eIDgeN", // Email related notification
-    InvalidEmailmessage = "span[class='llBOFA'] span" // InValid Email notification
+    InvalidEmailmessage = "span[class='llBOFA'] span", // InValid Email notification
+    OTPnotReceived = ".kZYA3m", // OTP not received notification
+    OTPfield = ".XDRRi5 input" // OTP field
     }

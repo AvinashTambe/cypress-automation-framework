@@ -21,10 +21,7 @@ Cypress.Commands.add("getOTP", () => {
       return otp;
     });
   });
-  
-Cypress.Commands.add("getOTPfields", () => {
-    return cy.get(".XDRRi5 input"); // Ensure correct selector
-});
+
   
 Cypress.Commands.add("verificationUnsuccessfulState", () => {
   return cy.get('body').then(($body) => {

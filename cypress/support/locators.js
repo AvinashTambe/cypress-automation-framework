@@ -15,11 +15,14 @@ var HomePageLocators;
 })(HomePageLocators || (exports.HomePageLocators = HomePageLocators = {}));
 var LoginPageLocators;
 (function (LoginPageLocators) {
-    LoginPageLocators["EmailId"] = "input[class='r4vIwl BV+Dqf']";
+    //EmailId = "input[class='r4vIwl BV+Dqf']", // Email ID input field
+    LoginPageLocators["EmailId"] = ".r4vIwl";
     LoginPageLocators["OTPbutton"] = ".QqFHMw.twnTnD._7Pd1Fp";
     LoginPageLocators["ChangeEmailbutton"] = ".azBkHf";
     LoginPageLocators["ResendOTPbutton"] = ".rMF9Z9";
     LoginPageLocators["Verifybutton"] = "button[class='QqFHMw llMuju M5XAsp']";
     LoginPageLocators["Emailmessages"] = ".eIDgeN";
-    LoginPageLocators["InvalidEmailmessage"] = "span[class='llBOFA'] span"; // InValid Email notification
+    LoginPageLocators["InvalidEmailmessage"] = "span[class='llBOFA'] span";
+    LoginPageLocators["OTPnotReceived"] = ".kZYA3m";
+    LoginPageLocators["OTPfield"] = ".XDRRi5 input"; // OTP field
 })(LoginPageLocators || (exports.LoginPageLocators = LoginPageLocators = {}));
