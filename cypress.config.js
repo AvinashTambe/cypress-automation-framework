@@ -20,6 +20,7 @@ module.exports = {
               password: emailPass,
               host: imapHost,
               port: 993,
+              tls: true,
               tlsOptions: {
                 rejectUnauthorized: false  // ✅ This line is key
               },

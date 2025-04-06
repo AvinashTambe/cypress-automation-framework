@@ -7,7 +7,7 @@ describe('LoginPage Test Suite', () => {
         cy.launchFlipkart();
     });
 
-    /*it('verify login with unregistered email', () => {
+    it('verify login with unregistered email', () => {
         HomePage.getLoginLink().click(); // Click the login link
         LoginPage.getEmailInputField(); 
         LoginPage.enterEmail("invalid_user@gmail.com"); // Enter invalid email
@@ -79,40 +79,28 @@ describe('LoginPage Test Suite', () => {
             LoginPage.clickVerifybutton();// Click the Verify button
             LoginPage.IncorrectOTPToaster(); // Check if the toast notification is visible
         });
-    });*/
+    });
 
     it("extract OTP and enter correct OTP", () => {
         HomePage.getLoginLink().click(); // Click the login link
         LoginPage.getEmailInputField().should('be.visible');
         LoginPage.enterEmail(Cypress.env("EMAIL_USER")); // Enter email or phone number
         LoginPage.clickRequestOTPbutton(); // Click the Request OTP button
-
-        // Retry fetching OTP every 5 seconds, up to 3 times
-        cy.wait(5000); // Initial wait for OTP email to arrive
+    
+        cy.wait(5000); // Wait for OTP email to arrive
+    
         cy.verificationUnsuccessfulState().then((failed) => {
             if (failed) {
                 cy.log('❌ Verification failed. Stopping test execution.');
-                return; // ✅ STOP test execution here
+                return;
             }
+    
             cy.getOTP().then((otp) => {
-                cy.log("✅ Latest OTP Retrieved: " + otp);
-                expect(otp).to.match(/^\d{6}$/); // Validate OTP format
-                cy.wrap(otp).as("otpValue"); // Store OTP using Cypress alias
+                expect(otp).to.match(/^\d{6}$/); // ✅ Validate OTP format
+                LoginPage.enterOTP(otp);         // ✅ Enter OTP only inside this block
+                LoginPage.clickVerifybutton();   // ✅ Click Verify button after OTP is entered
             });
-
-            cy.wait(3000); // Ensure enough delay for OTP to be processed
-
-            // Retrieve OTP from alias and enter it into fields
-            cy.get("@otpValue").then((otp) => {
-                cy.getOTPfields().each((input, index) => {
-                    cy.wrap(input).clear().type(otp[index]); // Enter each digit separately
-                });
-            });
-
-            cy.log("✅ OTP Entered Successfully");
-            LoginPage.clickVerifybutton().should("be.visible").click(); // Click the Verify button
         });
     });
-
     
 });
