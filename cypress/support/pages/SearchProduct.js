@@ -1,35 +1,48 @@
+import { SearchProductPageLocators } from '../locators/SearchProductPageLocators';
+import { SearchProductPageToasterMessages } from '../locators/SearchProductPageToasterMessages';
+
 class SearchProduct {
   
-    getSearchInputField() {
-        return cy.get('input.Pke_EE'); //Get the search input field element
-    }
 
     enterSearchText(searchText) {
-        this.getSearchInputField().type(searchText); //Enter the search text
+        this.getSearchInputField(SearchProductPageLocators)
+            .should('be.visible') //Check if the search input field is visible
+            .clear() //Clear the input field
+            .type(searchText); //Enter the search text
     }
 
     clickSearchButton() {
-        return cy.get('button._2iLD__').click(); //Click the search button
+        return cy.get(SearchProductPageLocators.clickSearchButton)
+            .should
+            .click(); //Click the search button
     }
 
     searchResults() {
-        return cy.xpath("//span[@class='BUOuZu']"); //Get the search results container
+        return cy.xpath(SearchProductPageLocators.SearchResults)
+            .should('be.visible'); //Get the search results container
     }
 
-    minimumPricButton() {
-        return cy.xpath("//div[@class='suthUA']//select[@class='Gn+jFg']");
+    minimumPricButton(minPrice) {
+        return cy.xpath(SearchProductPageLocators.Minpricebutton)
+            .should('be.visible') //Get the minimum price filter
+            .select(minPrice); //Select the minimum price filter
     }
 
-    maximumPriceButton() {
-        return cy.xpath("//div[@class='tKgS7w']//select[@class='Gn+jFg']");
+    maximumPriceButton(maxPrice) {
+        return cy.xpath(SearchProductPageLocators.Maxpricebutton)
+            .should('be.visible') //Get the maximum price filter
+            .select(maxPrice); //Select the maximum price filter
     }
 
     filterApplied() {
-        return cy.xpath("//div[@class='_6tw8ju']");
+        return cy.xpath(SearchProductPageLocators.filterApplied)
+            .should('be.visible'); //Get the filter applied message
     }
 
     invalidSearchMessage() {
-        return cy.get('.BHPsUQ');
+        return cy.get(SearchProductPageLocators.Invalidsearch)
+            .should('be.visible') //Get the invalid search message 
+            .should('contain', SearchProductPageToasterMessages.NoResultsFound); //Check if the message contains 'No results found'
     }
 }
 

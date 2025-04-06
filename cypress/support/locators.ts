@@ -22,3 +22,13 @@ export enum HomePageLocators {
     OTPnotReceived = ".kZYA3m", // OTP not received notification
     OTPfield = ".XDRRi5 input" // OTP field
     }
+
+    export enum SearchProductPageLocators {
+      Searchbar = "input.Pke_EE", // Search bar
+      SearchButton = "button._2iLD__", // Search button
+      SearchResults = "//span[@class='BUOuZu']", // Search results 
+      Minpricebutton = "//div[@class='suthUA']//select[@class='Gn+jFg']", // Min price button 
+      Maxpricebutton = "//div[@class='tKgS7w']//select[@class='Gn+jFg']", // Max price button
+      Filterapplied = "//div[@class='_6tw8ju']", // Filter applied
+      Invalidsearch = ".BHPsUQ" // Invalid search notification
+    }

@@ -18,10 +18,16 @@
   },
   "homepage": "https://github.com/AvinashTambe/cypress-automation-framework#readme",
   "devDependencies": {
+    "@cypress/webpack-preprocessor": "^6.0.4",
     "buffer": "^6.0.3",
     "cypress": "^14.2.1",
     "cypress-xpath": "^2.0.1",
-    "stream-browserify": "^3.0.0"
+    "stream-browserify": "^3.0.0",
+    "ts-loader": "^9.5.2",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.8.3",
+    "webpack": "^5.98.0",
+    "webpack-cli": "^6.0.1"
   },
   "dependencies": {
     "dotenv": "^16.4.7",

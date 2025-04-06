@@ -1,5 +1,5 @@
 import { LoginPageLocators } from "@support/locators";
-import { ToasterMessages } from "@support/ToasterMessages";
+import { LoginPageToasterMessages } from "@support/ToasterMessages";
 
 class LoginPage {
 
@@ -60,17 +60,17 @@ class LoginPage {
     InvalidEmailToaster(){
         return cy.get(LoginPageLocators.InvalidEmailmessage)
             .should('be.visible') //Check if the notification is visible
-            .and('contain', ToasterMessages.InvalidEmail) //Get the toast notification element
+            .and('contain', LoginPageToasterMessages.InvalidEmail) //Get the toast notification element
     }
 
     UnregisteredEmailToaster(){
         return cy.get(LoginPageLocators.Emailmessages)
             .should('be.visible') //Check if the notification is visible
-            .and('contain', ToasterMessages.UnregisteredEmail) //Get the toast notification element
+            .and('contain', LoginPageToasterMessages.UnregisteredEmail) //Get the toast notification element
     }
 
     OTPsentToaster(expectedEmail){
-        const fullMessage = `${ToasterMessages.OTPsent} ${expectedEmail}`;//Construct the full message
+        const fullMessage = `${LoginPageToasterMessages.OTPsent} ${expectedEmail}`;//Construct the full message
         return cy.get(LoginPageLocators.Emailmessages)
             .should('be.visible') //Check if the notification is visible
             .and('have.text', fullMessage) //Get the toast notification element
@@ -85,7 +85,7 @@ class LoginPage {
     IncorrectOTPToaster(){
         return cy.get(LoginPageLocators.Emailmessages)
             .should('be.visible') //Check if the notification is visible
-            .and('contain', ToasterMessages.IncorrectOTP) //Get the toast notification element
+            .and('contain', LoginPageToasterMessages.IncorrectOTP) //Get the toast notification element
     }
 
     

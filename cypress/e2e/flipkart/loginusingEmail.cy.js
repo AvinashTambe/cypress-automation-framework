@@ -59,7 +59,7 @@ describe('LoginPage Test Suite', () => {
             LoginPage.resendOTPbutton()// Click the resend OTP button
             LoginPage.OTPsentToaster(Cypress.env("EMAIL_USER")); 
         });
-    });*/
+    });
 
 
     it('verify incorrect OTP entered functionality', () => {
@@ -79,10 +79,10 @@ describe('LoginPage Test Suite', () => {
             LoginPage.clickVerifybutton();// Click the Verify button
             LoginPage.IncorrectOTPToaster(); // Check if the toast notification is visible
         });
-    });
+    });*/
 
-    /*it("extract OTP and enter correct OTP", () => {
-        LoginPage.getLoginLink().click(); // Click the login link
+    it("extract OTP and enter correct OTP", () => {
+        HomePage.getLoginLink().click(); // Click the login link
         LoginPage.getEmailInputField().should('be.visible');
         LoginPage.enterEmail(Cypress.env("EMAIL_USER")); // Enter email or phone number
         LoginPage.clickRequestOTPbutton(); // Click the Request OTP button
@@ -112,7 +112,7 @@ describe('LoginPage Test Suite', () => {
             cy.log("✅ OTP Entered Successfully");
             LoginPage.clickVerifybutton().should("be.visible").click(); // Click the Verify button
         });
-    });*/
+    });
 
     
 });

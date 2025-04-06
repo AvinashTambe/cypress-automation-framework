@@ -43,4 +43,4 @@ class HomePage {
     };
 };
 
-exports.default = new HomePage();
+export default new HomePage();
