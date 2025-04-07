@@ -1,4 +1,4 @@
-import { HomePageLocators } from "@support/locators";// Importing the locators for the home page
+import { HomePageLocators } from '../locators'; // Importing the locators for the home page
 
 class HomePage {
     

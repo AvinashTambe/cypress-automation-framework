@@ -1,5 +1,5 @@
-import { LoginPageLocators } from "@support/locators";
-import { LoginPageToasterMessages } from "@support/ToasterMessages";
+import { LoginPageLocators } from "../locators";
+import { LoginPageToasterMessages } from "../ToasterMessages";
 
 class LoginPage {
 

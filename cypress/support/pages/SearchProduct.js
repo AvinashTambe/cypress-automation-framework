@@ -1,19 +1,19 @@
-import { SearchProductPageLocators } from '../locators/SearchProductPageLocators';
-import { SearchProductPageToasterMessages } from '../locators/SearchProductPageToasterMessages';
+import { SearchProductPageLocators } from "@support/locators";
+import { SearchProductPageToasterMessages } from "@support/ToasterMessages";
 
 class SearchProduct {
   
 
     enterSearchText(searchText) {
-        this.getSearchInputField(SearchProductPageLocators)
+        return cy.xpath (SearchProductPageLocators.Searchbar)
             .should('be.visible') //Check if the search input field is visible
             .clear() //Clear the input field
             .type(searchText); //Enter the search text
     }
 
     clickSearchButton() {
-        return cy.get(SearchProductPageLocators.clickSearchButton)
-            .should
+        return cy.get(SearchProductPageLocators.SearchButton)
+            .should('be.visible') //Check if the search button is visible
             .click(); //Click the search button
     }
 

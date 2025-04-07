@@ -1,16 +1,9 @@
 const imaps = require('imap-simple');
 const { simpleParser } = require('mailparser');
-const webpackPreprocessor = require('@cypress/webpack-preprocessor');
 
 module.exports = {
   e2e: {
     setupNodeEvents(on, config) {
-      // 👉 Webpack preprocessor setup
-      on('file:preprocessor', webpackPreprocessor({
-        webpackOptions: require('./webpack.config'),
-        watchOptions: {},
-      }));
-
       // 👉 Your custom email/OTP fetcher task
       on('task', {
         fetchOTP({ emailUser, emailPass, imapHost }) {
@@ -22,7 +15,7 @@ module.exports = {
               port: 993,
               tls: true,
               tlsOptions: {
-                rejectUnauthorized: false  // ✅ This line is key
+                rejectUnauthorized: false
               },
               authTimeout: 30000
             }
@@ -55,7 +48,18 @@ module.exports = {
       return config;
     },
 
-    specPattern: 'cypress/e2e/**/*.cy.{js,ts}', // Optional: match your .js and .ts tests
-    supportFile: 'cypress/support/e2e.js',  // or update to your support file path if using one
+    specPattern: 'cypress/e2e/**/*.cy.js',
+    supportFile: 'cypress/support/e2e.js',
+  },
+
+  reporter: "cypress-multi-reporters",
+  reporterOptions: {
+    reporterEnabled: "mochawesome",
+    mochawesomeReporterOptions: {
+      reportDir: "cypress/reports/mochawesome",
+      overwrite: false,
+      html: true,
+      json: true
+    }
   }
 };

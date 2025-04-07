@@ -1,0 +1,59 @@
+[
+    {
+      "searchKey": "iPhone 14 Pro",
+      "valid": true
+    },
+    {
+      "searchKey": "!@#$%^&*()",
+      "valid": false
+    },
+    {
+      "searchKey": "📱",
+      "valid": false
+    },
+    {
+      "searchKey": "Samsung Galaxy S24 Ultra",
+      "valid": true
+    },
+    {
+      "searchKey": "InvalidProduct123",
+      "valid": false
+    },
+    {
+        "searchKey": "!@#$%^&*()",
+        "valid": false
+    },
+    {
+        "searchKey": "1234567890",
+        "valid": false
+    },
+    {
+        "searchKey": "iPhone @ 15",
+        "valid": true
+    },
+    {
+        "searchKey": "HP Pavilion x360 laptop",
+        "valid": true
+    },
+    {
+        "searchKey": "boAt Rockerz 255",
+        "valid": true
+    },
+    {
+        "searchKey": "@#randomtext!@#",
+        "valid": false
+    },
+    {
+        "searchKey": "giberish123ads",
+        "valid": false
+    },
+    {
+        "searchKey": "Apple MacBook Air M2",
+        "valid": true
+    },
+    {
+        "searchKey": "24 inch 4K Monitor",
+        "valid": true
+    }
+  ]
+  
