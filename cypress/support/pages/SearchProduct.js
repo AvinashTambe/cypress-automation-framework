@@ -1,15 +1,17 @@
-import { SearchProductPageLocators } from "@support/locators";
-import { SearchProductPageToasterMessages } from "@support/ToasterMessages";
+import { SearchProductPageLocators } from '../locators';
+import { SearchProductPageToasterMessages } from '../ToasterMessages';
 
 class SearchProduct {
   
 
     enterSearchText(searchText) {
-        return cy.xpath (SearchProductPageLocators.Searchbar)
+        cy.get('body').should('be.visible');
+        return cy.get(SearchProductPageLocators.Searchbar)
             .should('be.visible') //Check if the search input field is visible
             .clear() //Clear the input field
             .type(searchText); //Enter the search text
     }
+
 
     clickSearchButton() {
         return cy.get(SearchProductPageLocators.SearchButton)

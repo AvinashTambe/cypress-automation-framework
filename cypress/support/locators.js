@@ -25,8 +25,9 @@ class HomePageLocators {
   }
   
   class SearchProductPageLocators {
-    static Searchbar = "//input[@placeholder='Search for products, brands and more']";
-    static SearchButton = "button._2iLD__";
+    static Searchbar = 'input[name="q"]';
+    //static Searchbar = ".Pke_EE";
+    static SearchButton = "button[type='submit']";
     static SearchResults = "//span[@class='BUOuZu']";
     static Minpricebutton = "//div[@class='suthUA']//select[@class='Gn+jFg']";
     static Maxpricebutton = "//div[@class='tKgS7w']//select[@class='Gn+jFg']";

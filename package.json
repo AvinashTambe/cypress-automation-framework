@@ -4,7 +4,9 @@
   "description": "## Overview   This repository contains automated test scripts for testing the Flipkart web application using Cypress. The goal is to ensure the stability and functionality of key features of the Flipkart website through end-to-end testing.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "cypress run",
+    "report": "npx mochawesome-merge cypress/reports/mochawesome/*.json > mochawesome.json && npx marge mochawesome.json --reportDir cypress/reports/final --reportFilename index.html && open cypress/reports/final/index.html"
+
   },
   "repository": {
     "type": "git",
