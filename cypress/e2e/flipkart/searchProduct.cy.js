@@ -99,6 +99,6 @@ describe('Search Product Test Suite', () => {
         SearchProduct.maximumPriceButton().select('₹30000'); // Select maximum price filter
         cy.wait(2000); // Wait for the price filter to apply
         SearchProduct.filterApplied().should('be.visible'); // Check if the filter is applied
-    });*/
+    }); */
 
-});
+}); 

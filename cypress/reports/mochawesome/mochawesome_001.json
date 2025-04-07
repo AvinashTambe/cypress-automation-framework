@@ -1,0 +1,201 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 6,
+    "passes": 6,
+    "pending": 0,
+    "failures": 0,
+    "start": "2025-04-07T16:51:43.836Z",
+    "end": "2025-04-07T16:52:39.680Z",
+    "duration": 55844,
+    "testsRegistered": 6,
+    "passPercent": 100,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "0f8caa4c-f1b5-4007-a67b-bbad9d2defe1",
+      "title": "",
+      "fullFile": "cypress/e2e/flipkart/loginusingEmail.cy.js",
+      "file": "cypress/e2e/flipkart/loginusingEmail.cy.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "2ee0ddfa-eb48-495a-bb6e-f716b0ee04e6",
+          "title": "LoginPage Test Suite",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "verify login with unregistered email",
+              "fullTitle": "LoginPage Test Suite verify login with unregistered email",
+              "timedOut": null,
+              "duration": 3938,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "_HomePage.default.getLoginLink().click(); // Click the login link\n_LoginPage.default.getEmailInputField();\n_LoginPage.default.enterEmail(\"invalid_user@gmail.com\"); // Enter invalid email\n_LoginPage.default.clickRequestOTPbutton(); // Click the Request OTP button\n_LoginPage.default.UnregisteredEmailToaster(); // Check if the toast notification is visible",
+              "err": {},
+              "uuid": "5dd9e825-131f-41b8-9cf5-95739d75f783",
+              "parentUUID": "2ee0ddfa-eb48-495a-bb6e-f716b0ee04e6",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "verify login with invalid or empty email",
+              "fullTitle": "LoginPage Test Suite verify login with invalid or empty email",
+              "timedOut": null,
+              "duration": 2771,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "_HomePage.default.getLoginLink().click(); // Click the login link\n_LoginPage.default.getEmailInputField();\n_LoginPage.default.enterEmail(\"test>\"); // Enter empty email\n_LoginPage.default.clickRequestOTPbutton(); // Click the Request OTP button\n_LoginPage.default.InvalidEmailToaster(); // Check if the toast notification is visible",
+              "err": {},
+              "uuid": "28bea1b0-bed9-48da-8157-300d514951b4",
+              "parentUUID": "2ee0ddfa-eb48-495a-bb6e-f716b0ee04e6",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "change email for login",
+              "fullTitle": "LoginPage Test Suite change email for login",
+              "timedOut": null,
+              "duration": 5178,
+              "state": "passed",
+              "speed": "medium",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "_HomePage.default.getLoginLink().click(); // Click login link\n_LoginPage.default.getEmailInputField(); // Check if the email input field is visible\n_LoginPage.default.enterEmail(Cypress.env(\"INITIAL_USER\")); // Enter initial email\n_LoginPage.default.clickRequestOTPbutton(); // Click \"Request OTP\"\n_LoginPage.default.OTPsentToaster(Cypress.env(\"INITIAL_USER\")); // Check if the toast notification is visible\ncy.verificationUnsuccessfulState().then(failed => {\n  if (failed) {\n    cy.log('❌ Verification failed. Stopping test execution.');\n    return; // ✅ STOP test execution here\n  }\n  // ✅ Proceed only if verification passed\n  _LoginPage.default.changeemailbutton();\n  _LoginPage.default.reenterEmail(Cypress.env(\"EMAIL_USER\")); // Enter new email\n  _LoginPage.default.clickRequestOTPbutton(); // Click \"Request OTP\"\n  _LoginPage.default.OTPsentToaster(Cypress.env(\"EMAIL_USER\")); // Check if the toast notification is visible\n});",
+              "err": {},
+              "uuid": "cad80c49-a5c6-4b6d-9e50-6dd557a652e8",
+              "parentUUID": "2ee0ddfa-eb48-495a-bb6e-f716b0ee04e6",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "verify resend OTP functionality",
+              "fullTitle": "LoginPage Test Suite verify resend OTP functionality",
+              "timedOut": null,
+              "duration": 19398,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "_HomePage.default.getLoginLink().click(); // Click the login link\n_LoginPage.default.getEmailInputField();\n_LoginPage.default.enterEmail(Cypress.env(\"EMAIL_USER\")); // Enter email or phone number\n_LoginPage.default.clickRequestOTPbutton(); // Click the Request OTP button\n_LoginPage.default.OTPsentToaster(Cypress.env(\"EMAIL_USER\")); // Check if the toast notification is visible\ncy.verificationUnsuccessfulState().then(failed => {\n  if (failed) {\n    cy.log('❌ Verification failed. Stopping test execution.');\n    return; // ✅ STOP test execution here\n  }\n  _LoginPage.default.OTPnotreceivedToaster();\n  _LoginPage.default.resendOTPbutton(); // Click the resend OTP button\n  _LoginPage.default.OTPsentToaster(Cypress.env(\"EMAIL_USER\"));\n});",
+              "err": {},
+              "uuid": "437158b0-49cf-4d0a-bac3-470cd4f2aec3",
+              "parentUUID": "2ee0ddfa-eb48-495a-bb6e-f716b0ee04e6",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "verify incorrect OTP entered functionality",
+              "fullTitle": "LoginPage Test Suite verify incorrect OTP entered functionality",
+              "timedOut": null,
+              "duration": 5179,
+              "state": "passed",
+              "speed": "medium",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "_HomePage.default.getLoginLink().click(); // Click the login link\n_LoginPage.default.getEmailInputField();\n_LoginPage.default.enterEmail(Cypress.env(\"EMAIL_USER\")); // Enter email or phone number\n_LoginPage.default.clickRequestOTPbutton(Cypress.env(\"EMAIL_USER\")); // Click the Request OTP button\n_LoginPage.default.OTPsentToaster(Cypress.env(\"EMAIL_USER\")); // Check if the toast notification is visible\ncy.verificationUnsuccessfulState().then(failed => {\n  if (failed) {\n    cy.log('❌ Verification failed. Stopping test execution.');\n    return; // ✅ STOP test execution here\n  }\n  // Enter incorrect OTP\n  const otp = \"123456\"; // Example incorrect OTP\n  _LoginPage.default.enterOTP(otp); // Enter incorrect OTP\n  _LoginPage.default.clickVerifybutton(); // Click the Verify button\n  _LoginPage.default.IncorrectOTPToaster(); // Check if the toast notification is visible\n});",
+              "err": {},
+              "uuid": "8ee3e564-44e6-4d10-b042-f10a6951e8f3",
+              "parentUUID": "2ee0ddfa-eb48-495a-bb6e-f716b0ee04e6",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "extract OTP and enter correct OTP",
+              "fullTitle": "LoginPage Test Suite extract OTP and enter correct OTP",
+              "timedOut": null,
+              "duration": 17617,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "_HomePage.default.getLoginLink().click(); // Click the login link\n_LoginPage.default.getEmailInputField().should('be.visible');\n_LoginPage.default.enterEmail(Cypress.env(\"EMAIL_USER\")); // Enter email or phone number\n_LoginPage.default.clickRequestOTPbutton(); // Click the Request OTP button\ncy.wait(5000); // Wait for OTP email to arrive\ncy.verificationUnsuccessfulState().then(failed => {\n  if (failed) {\n    cy.log('❌ Verification failed. Stopping test execution.');\n    return;\n  }\n  cy.getOTP().then(otp => {\n    expect(otp).to.match(/^\\d{6}$/); // ✅ Validate OTP format\n    _LoginPage.default.enterOTP(otp); // ✅ Enter OTP only inside this block\n    _LoginPage.default.clickVerifybutton(); // ✅ Click Verify button after OTP is entered\n  });\n});",
+              "err": {},
+              "uuid": "a541ddcb-4da0-41f9-acc1-5198c6b283ba",
+              "parentUUID": "2ee0ddfa-eb48-495a-bb6e-f716b0ee04e6",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "5dd9e825-131f-41b8-9cf5-95739d75f783",
+            "28bea1b0-bed9-48da-8157-300d514951b4",
+            "cad80c49-a5c6-4b6d-9e50-6dd557a652e8",
+            "437158b0-49cf-4d0a-bac3-470cd4f2aec3",
+            "8ee3e564-44e6-4d10-b042-f10a6951e8f3",
+            "a541ddcb-4da0-41f9-acc1-5198c6b283ba"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 54081,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.0.1"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": true,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "7.1.3"
+    },
+    "marge": {
+      "options": {
+        "id": "default",
+        "reportDir": "cypress/reports/mochawesome",
+        "overwrite": false,
+        "html": true,
+        "json": true
+      },
+      "version": "6.2.0"
+    }
+  }
+}

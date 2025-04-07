@@ -1,0 +1,106 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 1,
+    "passes": 1,
+    "pending": 0,
+    "failures": 0,
+    "start": "2025-04-07T16:52:40.391Z",
+    "end": "2025-04-07T16:53:21.703Z",
+    "duration": 41312,
+    "testsRegistered": 1,
+    "passPercent": 100,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "0b824d45-eb6f-4e14-96ea-1770e525f090",
+      "title": "",
+      "fullFile": "cypress/e2e/flipkart/searchProduct.cy.js",
+      "file": "cypress/e2e/flipkart/searchProduct.cy.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "68599299-e938-4f06-9cb8-29fd823d846d",
+          "title": "Search Product Test Suite",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "Search using data from fixture file",
+              "fullTitle": "Search Product Test Suite Search using data from fixture file",
+              "timedOut": null,
+              "duration": 39156,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.fixture('testData/searchData.json').then(searchTests => {\n  searchTests.forEach(test => {\n    cy.log(`🔍 Searching for: ${test.searchKey}`);\n    _SearchProduct.default.enterSearchText(test.searchKey);\n    _SearchProduct.default.clickSearchButton();\n    // Wait for results to load (adjust as needed)\n    cy.wait(2000);\n    // Validate based on expected validity\n    if (test.valid) {\n      cy.get('body').then($body => {\n        if ($body.find('._1YokD2 ._1AtVbE').length > 0) {\n          cy.log(`✅ Valid result found for: ${test.searchKey}`);\n        } else {\n          cy.log(`❌ No valid result found for: ${test.searchKey}`);\n        }\n      });\n    } else {\n      cy.get('body').then($body => {\n        if ($body.text().includes(\"Sorry, no results found\")) {\n          cy.log(`✅ Correctly handled invalid input: ${test.searchKey}`);\n        } else {\n          cy.log(`⚠️ Unexpected result for invalid input: ${test.searchKey}`);\n        }\n      });\n    }\n  });\n});",
+              "err": {},
+              "uuid": "a2442cc3-a400-4b1c-86f0-d84c53c4b847",
+              "parentUUID": "68599299-e938-4f06-9cb8-29fd823d846d",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "a2442cc3-a400-4b1c-86f0-d84c53c4b847"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 39156,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.0.1"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": true,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "7.1.3"
+    },
+    "marge": {
+      "options": {
+        "id": "default",
+        "reportDir": "cypress/reports/mochawesome",
+        "overwrite": false,
+        "html": true,
+        "json": true
+      },
+      "version": "6.2.0"
+    }
+  }
+}

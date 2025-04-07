@@ -1,0 +1,163 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 4,
+    "passes": 4,
+    "pending": 0,
+    "failures": 0,
+    "start": "2025-04-07T16:51:35.140Z",
+    "end": "2025-04-07T16:51:43.041Z",
+    "duration": 7901,
+    "testsRegistered": 4,
+    "passPercent": 100,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "9a04d56f-9b29-437b-a069-e0279fb9cb16",
+      "title": "",
+      "fullFile": "cypress/e2e/flipkart/homePageTest.cy.js",
+      "file": "cypress/e2e/flipkart/homePageTest.cy.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "d78fd364-010b-4edf-9946-de814d3d9372",
+          "title": "HomePage Test Suite",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "Verify all the elements on the home page",
+              "fullTitle": "HomePage Test Suite Verify all the elements on the home page",
+              "timedOut": null,
+              "duration": 1683,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "_HomePage.default.getLogo(); // Verify the flipkart logo\n_HomePage.default.getSearchBox(); // Verify the search box\n_HomePage.default.getSearchButton(); // Verify the search button\n_HomePage.default.getLoginLink(); // Verify the login link\n_HomePage.default.getCartLink(); // Verify the cart link\n_HomePage.default.getResellerLink(); // Verify the reseller link\n_HomePage.default.getMoreLink(); // Verify the more link",
+              "err": {},
+              "uuid": "da466814-e258-4c1a-b0fc-a569ca2ae24e",
+              "parentUUID": "d78fd364-010b-4edf-9946-de814d3d9372",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Verify the categories count",
+              "fullTitle": "HomePage Test Suite Verify the categories count",
+              "timedOut": null,
+              "duration": 1758,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "_HomePage.default.getCategoriesLink(); // Check for 9 categories",
+              "err": {},
+              "uuid": "2105f0fa-459a-4f79-8045-ae01e6ffafd9",
+              "parentUUID": "d78fd364-010b-4edf-9946-de814d3d9372",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Verify category names",
+              "fullTitle": "HomePage Test Suite Verify category names",
+              "timedOut": null,
+              "duration": 1974,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.get('@categories').then(expectedCategories => {\n  cy.verifyCategories(expectedCategories); // Verify the category names\n});",
+              "err": {},
+              "uuid": "f6b4927b-281b-457d-a248-764a12050c69",
+              "parentUUID": "d78fd364-010b-4edf-9946-de814d3d9372",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Verify the banner",
+              "fullTitle": "HomePage Test Suite Verify the banner",
+              "timedOut": null,
+              "duration": 1114,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "_HomePage.default.getBanner(); // Verify the banner",
+              "err": {},
+              "uuid": "c882cb6e-bfa4-4311-9c6e-686460ce7627",
+              "parentUUID": "d78fd364-010b-4edf-9946-de814d3d9372",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "da466814-e258-4c1a-b0fc-a569ca2ae24e",
+            "2105f0fa-459a-4f79-8045-ae01e6ffafd9",
+            "f6b4927b-281b-457d-a248-764a12050c69",
+            "c882cb6e-bfa4-4311-9c6e-686460ce7627"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 6529,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.0.1"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": true,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "7.1.3"
+    },
+    "marge": {
+      "options": {
+        "id": "default",
+        "reportDir": "cypress/reports/mochawesome",
+        "overwrite": false,
+        "html": true,
+        "json": true
+      },
+      "version": "6.2.0"
+    }
+  }
+}
