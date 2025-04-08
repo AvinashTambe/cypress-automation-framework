@@ -35,7 +35,7 @@ class SearchProduct {
     }
 
     filterApplied() {
-        return cy.xpath(SearchProductPageLocators.filterApplied)
+        return cy.get(SearchProductPageLocators.Filterapplied)
             .should('be.visible');
     }
 
@@ -83,6 +83,7 @@ class SearchProduct {
             }
         });
     }
+        
 }
 
 export default new SearchProduct();

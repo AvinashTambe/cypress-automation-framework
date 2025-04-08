@@ -31,7 +31,7 @@ class HomePageLocators {
     static SearchResults = "//span[@class='BUOuZu']";
     static Minpricebutton = "//div[@class='suthUA']//select[@class='Gn+jFg']";
     static Maxpricebutton = "//div[@class='tKgS7w']//select[@class='Gn+jFg']";
-    static Filterapplied = "//div[@class='_6tw8ju']";
+    static Filterapplied = "._6tw8ju";
     static Invalidsearch = ".BHPsUQ";
   }
   
