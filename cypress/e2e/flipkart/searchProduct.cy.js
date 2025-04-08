@@ -9,18 +9,13 @@ describe('Search Product Test Suite', () => {
 
     // Load search keys from JSON
     it('Search using data from fixture file', () => {
-        cy.fixture('testData/searchData.json').then((searchTests) => {
-          searchTests.forEach((test) => {
+        cy.fixture('testData/searchData.json').then((searchTests) => { // Load search keys from JSON
+          searchTests.forEach((test) => { // Iterate through each test case
             cy.log(`🔍 Searching for: ${test.searchKey}`);
-      
-            SearchProduct.enterSearchText(test.searchKey);
-            SearchProduct.clickSearchButton();
-      
-            // Wait for results to load (you can replace this with better wait conditions if needed)
-            cy.wait(2000);
-      
-            // Use your custom validation command
-            SearchProduct.validateSearch(test.searchKey);
+            SearchProduct.enterSearchText(test.searchKey); // Enter the search text
+            SearchProduct.clickSearchButton(); // Click the search button
+            cy.wait(2000); // Wait for search results to load
+            SearchProduct.validateSearch(test.searchKey); // Validate the search results
           });
         });
       });
