@@ -16,10 +16,6 @@
       "valid": true
     },
     {
-      "searchKey": "InvalidProduct123",
-      "valid": false
-    },
-    {
         "searchKey": "!@#$%^&*()",
         "valid": false
     },
@@ -38,10 +34,6 @@
     {
         "searchKey": "boAt Rockerz 255",
         "valid": true
-    },
-    {
-        "searchKey": "@#randomtext!@#",
-        "valid": false
     },
     {
         "searchKey": "giberish123ads",

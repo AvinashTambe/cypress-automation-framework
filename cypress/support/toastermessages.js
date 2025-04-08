@@ -9,7 +9,7 @@ class LoginPageToasterMessages {
   }
   
   class SearchProductPageToasterMessages {
-    static NoResultsFound = "Sorry, no results found !";
+    static NoResultsFound = "Sorry, no results found!";
   }
   
   module.exports = {
